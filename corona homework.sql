@@ -1,0 +1,20 @@
+create database corona;
+use corona;
+select distinct state_ut from corona_table;
+alter table corona_table change state State_UT text;
+select count(*) totalentries from corona_table;
+select * from corona_table where TotalConfirmedcases>4;
+select * from corona_table where Death>2;
+select * from corona_table where date='07-04-2020';
+select State_UT, avg(Totalconfirmedcases) averageconfcases from corona_table group by State_UT;
+select State_ut, avg(death) countdeath from corona_table group by State_UT order by countdeath desc limit 1;
+select * from corona_table order by Newcases desc limit 1;
+select State_UT,max(Cured_Discharged_Migrated) maxcured from corona_table group by State_UT order by maxcured desc limit 1;
+select date, max(totalconfirmedcases+Newcases) highestconfcases from corona_table group by date order by highestconfcases desc limit 1;
+select state_ut, max(newrecovered) from corona_table group by State_UT order by max(Newrecovered) desc limit 1;
+select state_ut, avg(death),avg(TotalConfirmedcases) from corona_table group by State_UT;
+select State_ut, max(cured_discharged_migrated) from corona_table group by State_UT order by max(cured_discharged_migrated) desc limit 1;
+select date, max(newcases+newdeaths+Newrecovered) inccase from corona_table group by date order by inccase desc limit 1;
+select state_ut, avg(Death) deaths, sum(TotalConfirmedcases) totconfcases from corona_table group by state_ut having deaths > 700  and totconfcases>10000;
+select state_ut, avg(Newrecovered+Cured_Discharged_Migrated) recovered, sum(DEATH+Newdeaths) totaldeaths from corona_table group by state_ut having recovered > 15000  and totaldeaths>20000;
+
