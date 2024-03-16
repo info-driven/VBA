@@ -1,0 +1,17 @@
+use hollywood;
+SELECT movie from hollywood_table;
+select distinct leadstudio from hollywood_table;
+select count(movie) totalmovies from hollywood_table;
+select movie from hollywood_table where RottenTomatoes>70;
+select movie from hollywood_table where AudienceScore>80;
+select movie from hollywood_table where year=2008;
+select LeadStudio,avg(rottentomatoes) average from hollywood_table group by leadstudio order by average desc;
+select genre, avg(AudienceScore) as highestavg from hollywood_table group by genre order by highestavg desc limit 1;
+select movie from hollywood_table order by BOAvgOpenWeekend desc;
+select leadstudio, max(Profitability) profit from hollywood_table group by LeadStudio order by profit desc limit 1;  
+select movie, (DomesticGross+ForeignGross-Budget) profit from hollywood_table order by profit desc limit 1;
+select LeadStudio, genre, count(movie) moviecount from hollywood_table where genre="animation" group by LeadStudio order by moviecount desc limit 1;
+select genre, avg(RottenTomatoes) avgscore from hollywood_table group by genre ; 
+select leadstudio, sum(domesticgross+WorldGross+ForeignGross) totalgross from hollywood_table group by LeadStudio order by totalgross desc limit 1;
+select year,max(BOAvgOpenWeekend) from hollywood_table group by year order by max(BOAvgOpenWeekend) desc limit 1;
+select year,avg(openingweekend) from hollywood_table group by year order by  avg(OpeningWeekend) desc limit 1;
